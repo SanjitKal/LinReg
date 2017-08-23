@@ -14,18 +14,18 @@ def gradientDescent(x, theta, y, alpha, iter, cost):
 		cost.append(np.sum(np.square(residual)))
 	return theta
 
+def normalEquation(x,y):
+	pseudo_inv = np.linalg.inv(np.matmul(x.transpose(),x))
+	transformation = np.matmul(pseudo_inv,x.transpose())
+	theta = np.matmul(transformation,y)
+	return theta
+
 def predict(x, theta):
 	theta_0 = theta[0]
 	theta = theta[1:]
 	#'x' should contain multiple columns for multivariate regression
 	x = np.reshape(x,(7,1))
 	return theta_0 + np.matmul(x,theta)
-
-def normalEquation(x,y):
-	pseudo_inv = np.linalg.inv(np.matmul(x.transpose(),x))
-	transformation = np.matmul(pseudo_inv,x.transpose())
-	theta = np.matmul(transformation,y)
-	return theta
 
 def main():
 	#Store and prepare data
